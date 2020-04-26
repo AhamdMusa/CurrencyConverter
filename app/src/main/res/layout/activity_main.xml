@@ -75,6 +75,7 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="#f7f7f7"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:elevation="3dp">
@@ -83,13 +84,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
-                    android:gravity="center_horizontal">
+                    android:background="#f7f7f7"
+                    android:gravity="center_vertical">
+                    <androidx.cardview.widget.CardView
+                        android:layout_marginStart="20dp"
+                        android:layout_width="50dp"
+                        android:layout_height="35dp"
+                        android:elevation="3dp">
                     <ImageView
                         android:id="@+id/miniflag"
                         android:layout_width="50dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/unitedstates"
-                        android:layout_marginLeft="20dp"/>
+                        android:layout_height="35dp"
+                        android:src="@drawable/unitedstates"/>
+                    </androidx.cardview.widget.CardView>
                 <EditText
                     android:id="@+id/edittext"
                     android:layout_width="match_parent"
@@ -112,15 +119,20 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <ImageView
+    <androidx.cardview.widget.CardView
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="30dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:id="@+id/floatingActionButton"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:elevation="5dp">
+    <ImageView
+        android:id="@+id/floatingActionButton"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:src="@drawable/calculator"/>
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>
     </FrameLayout>

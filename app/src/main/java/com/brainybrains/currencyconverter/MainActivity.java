@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity implements Popup.PopupListen
     private EditText editText;
     private TextView textViewUp,textViewDw;
     private ImageView floatingActionButton,miniflag;
+    private double value;
+    private String code;
     List<Currency> clist = CurrencyConverter.getCurrencyList();
 
     @Override
@@ -49,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements Popup.PopupListen
                                 event.getAction() == KeyEvent.ACTION_DOWN &&
                                 event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
                     if (event == null || !event.isShiftPressed()) {
-                        double value = Double.parseDouble(editText.getText().toString());
+                        value = Double.parseDouble(editText.getText().toString());
                         CurrencyConverter.calculate(value, "USD", "BDT", new CurrencyConverter.Callback() {
                             @Override
                             public void onValueCalculated(Double value, Exception e) {
@@ -89,18 +91,57 @@ public class MainActivity extends AppCompatActivity implements Popup.PopupListen
             @Override
             public void onClick(View v) {
                 openDialog();
+                if (value != 0){
+
+                CurrencyConverter.calculate(value, "USD", code, new CurrencyConverter.Callback() {
+                    @Override
+                    public void onValueCalculated(Double value, Exception e) {
+                        if (e != null) {
+                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                        }else{
+                            textViewUp.setText(CurrencyConverter.formatCurrencyValue(code,value));
+                        }
+                    }
+                });
+                }
             }
         });
         miniflag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openDialog();
+                if (value != 0){
+
+                    CurrencyConverter.calculate(value, "USD", code, new CurrencyConverter.Callback() {
+                        @Override
+                        public void onValueCalculated(Double value, Exception e) {
+                            if (e != null) {
+                                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                            }else{
+                                textViewDw.setText(CurrencyConverter.formatCurrencyValue(code,value));
+                            }
+                        }
+                    });
+                }
             }
         });
         textViewDw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openDialog();
+                if (value != 0){
+
+                    CurrencyConverter.calculate(value, "USD", code, new CurrencyConverter.Callback() {
+                        @Override
+                        public void onValueCalculated(Double value, Exception e) {
+                            if (e != null) {
+                                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                            }else{
+                                textViewDw.setText(CurrencyConverter.formatCurrencyValue(code,value));
+                            }
+                        }
+                    });
+                }
             }
         });
     }
@@ -111,8 +152,10 @@ public class MainActivity extends AppCompatActivity implements Popup.PopupListen
     }
 
 
-//    @Override
-//    public void applyTexts(String username, String password) {
-//
-//    }
+    @Override
+    public void applyTexts(String countryCode) {
+        code=countryCode;
+
+
+    }
 }
